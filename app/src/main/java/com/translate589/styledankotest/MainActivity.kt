@@ -25,56 +25,25 @@ class MainActivity : AppCompatActivity() {
                     text = "default style textView"
                 }.lparams(wrapContent, wrapContent)
 
-                themedTextView(R.style.AppTheme) {
-                    text = "same style text3"
-                }
-                verticalLayout {
-                    textView {
-                        text = "same style text1"
-                    }.lparams(width = matchParent, height = wrapContent)
-
-                    textView {
-                        text = "same style text2"
-                    }.lparams(width = matchParent, height = wrapContent)
-
-                    button {}.lparams(width = matchParent, height = wrapContent)
-                }.applyRecursively { view ->
-                    when (view) {
-                        is TextView -> view.textSize = 24f
-                    }
-                }
-
                 textView {
                     textAlignment = TextView.TEXT_ALIGNMENT_CENTER
                     gravity = Gravity.CENTER
                     includeFontPadding = false
                     textSize = sp(20f).toFloat()
                     backgroundColor = Color.BLUE
-                    text = "same style text"
-                }
 
-                textView {
-                    textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-                    gravity = Gravity.CENTER
-                    includeFontPadding = false
-                    textSize = sp(20f).toFloat()
-                    backgroundColor = Color.BLUE
-                    text = "same style text"
-                }
+                    text = String.format("테스트1\n테스트2\n테스트3")
+                    maxLines = 2
+                    textColor = Color.YELLOW
+                }.lparams(dip(180),dip(80))
 
-                styleTextView(
-                    style = {
-                        ViewStyleHelper.setViewStyleHelper(
-                            ViewStyleHelper.Style.TestSampleStyle,this)
-                    },
-                    init = {
-                        text = String.format("테스트1\n테스트2\n테스트3")
-                        maxLines = 2
-                        textColor = Color.YELLOW
-                    }
-                ).lparams(dip(380),dip(80))
-
-                themedTextView()
+                styleTextView(style = {
+                    ViewStyleHelper.setViewStyleHelper(ViewStyleHelper.Style.TestSampleStyle,this)
+                }, init = {
+                    text = String.format("테스트1\n테스트2\n테스트3")
+                    maxLines = 2
+                    textColor = Color.YELLOW
+                }).lparams(dip(180),dip(80))
             }
         }
     }
